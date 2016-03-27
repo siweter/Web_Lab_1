@@ -1,0 +1,108 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+	body {
+		background: url('images/bg.jpg') top center no-repeat fixed #000009;
+	}
+</style>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" >
+
+
+
+    <table align="center" width="979" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td height="117" align="center" valign="top">
+			<table align="center" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="260"><img src="images/space.png"/></td>
+					<td width="428"><img src="images/glow.png"/></td>
+					<td width="157" valign="top"><img src="images/sign.png"/></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td background="images/page.png">
+			<table align="center" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="123"><img src="images/main.jpg"/></td>
+					<td width="230"><img src="images/lab_1.jpg"/></td>
+					<td width="230"><img src="images/lab_2.jpg"/></td>
+					<td width="145"><img src="images/about.jpg"/></td>
+					<td><img src="images/search.jpg"/></td>
+				</tr>
+				<tr>
+					<td colspan="5" height="12">&nbsp;</td>
+				</tr>
+			</table>
+			<table align="center" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="100%" colspan="3"><img src="images/head.jpg"/></td>
+				</tr>
+				<tr>
+					<td width="130"><img src="images/sign_up.jpg"/></td>
+					<td width="172"><img src="images/learn.jpg"/></td>
+					<td><img src="images/line.gif"/></td>
+				</tr>
+				<tr>
+					<td height="6" colspan="3"><img src="images/line_2.gif"/></td>
+				</tr>
+				<tr>
+					<td colspan="3" align="center"><img src="images/line_3.png"/></td>
+				</tr>
+				<tr>
+					<td colspan="3" background="images/content.png">
+							
+
+
+
+                            <form id="form1" runat="server">
+    <div>
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+            <p>
+                &nbsp;</p>
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+
+
+
+
+
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3" align="center"><img src="images/line_4.png"/></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td height="32"><img src="images/bottom.png"/></td>
+	</tr>
+	<tr>
+		<td height="46">
+			<table align="center" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td align="center"><img src="images/footer.png"/></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+
+
+
+</body>
+</html>
