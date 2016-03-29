@@ -31,11 +31,8 @@ public partial class Default2 : System.Web.UI.Page
 
         db.ad.InsertOnSubmit(adTable);
         db.SubmitChanges();
-
-
-        
-
-        
+                  
+                
         foreach (ListItem item in DeliveryCBList.Items)
         {
             if (item.Selected)
@@ -48,10 +45,9 @@ public partial class Default2 : System.Web.UI.Page
             }
             
         }
-        //db.SubmitChanges();
 
-        Response.Write(adTable.ad_id);
+        int id = adTable.ad_id;
 
-        Response.Redirect("/adlist.aspx");
+        
     }
 }

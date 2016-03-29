@@ -22,10 +22,13 @@
         .auto-style6 {
             width: 183px;
         }
+        .auto-style7 {
+            width: 270px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <div style="width: 50%; text-align: center; margin: 0 auto;"><strong><asp:Label ID="ErorLabel" runat="server" ForeColor="Red" Visible="False"></asp:Label></strong></div>
+    <div style="width: 50%; text-align: center; margin: 0 auto;"><strong><asp:Label ID="ErrorLabel" runat="server" ForeColor="Red" Visible="False"></asp:Label></strong></div>
     <!--Detailed table-->
    <table id="detailTable" align="center" border="1" class="auto-style1" style="width: 50%;" runat="server" visible="False">
         <tr>
@@ -126,8 +129,22 @@
         </tr>
         <tr>
             <td align="center" colspan="2">
-                <asp:Button ID="EditButton" runat="server" Text="Редагувати" CssClass="button" OnClick="EditButton_Click" />&nbsp;&nbsp;&nbsp;
-                <asp:Button ID="DeleteButton" runat="server" Text="Видалити" CssClass="button" />
+                <asp:Button ID="EditButton" runat="server" Text="Редагувати" CssClass="button" OnClick="EditButton_Click" Width="90px" />&nbsp;&nbsp;&nbsp;
+                <asp:Button ID="DeleteButton" runat="server" Text="Видалити" CssClass="button" OnClick="DeleteButton_Click" Width="90px" />
+                
+                <table id="DeleteDialog" class="auto-style1" runat="server" visible="False">
+                    <tr>
+                        <td colspan="2" style="color: #960B0B; text-align: center;"><strong>Ви дійсно бажаєте видалити це оголошення?</strong></td>
+                    </tr>
+                    <tr>
+                        <td align="right" style="padding-right: 10px; width: 50%;">
+                            <asp:Button ID="ConfirmButton" runat="server" Text="Так" Width="60px" OnClick="ConfirmButton_Click" />
+                        </td>
+                        <td align="left" style="padding-left: 10px;">
+                            <asp:Button ID="CancelButton" runat="server" Text="Ні" Width="60px" OnClick="CancelButton_Click" />
+                        </td>
+                    </tr>
+                </table>
             </td>
         </tr>
     </table>
@@ -240,7 +257,7 @@
         </tr>
         <tr>
             <td align="center" class="auto-style6"><asp:Button ID="clearButton" runat="server" Text="Очистити" /></td>
-            <td align="center"><asp:Button ID="sendButton" runat="server" Text="Розмістити" /></td>
+            <td align="center"><asp:Button ID="sendButton" runat="server" Text="Розмістити" OnClick="sendButton_Click" /></td>
         </tr>
     </table>
 

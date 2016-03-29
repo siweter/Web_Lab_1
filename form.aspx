@@ -26,10 +26,16 @@
         .auto-style7 {
             height: 27px;
         }
-    </style>
+        .auto-style8 {
+            width: 125px;
+        }
+        .auto-style9 {
+            height: 23px;
+        }
+        </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <table align="center" border="1" class="auto-style1">
+    <table id="FormTable" align="center" border="1" class="auto-style1" runat="server">
         <tr>
             <td colspan="2" class="auto-style2">
                 Подати оголошення</td>
@@ -144,5 +150,24 @@
             <td align="center"><asp:Button ID="sendButton" runat="server" Text="Розмістити" OnClick="sendButton_Click" /></td>
         </tr>
     </table>
+
+    <table id="LinksTable" align="center" class="auto-style1" runat="server" visible="False">
+        <tr>
+            <td style="color: #10721d; text-align: center;" colspan="2" class="auto-style9"><strong>Вітаємо! Ваше оголошення успішно розміщено!</strong></td>
+        </tr>
+        <tr>
+            <td style="text-align: center;" colspan="2" ><strong>Ви можете: </strong></td>
+        </tr>
+        <tr>
+            <td style="text-align: center;" class="auto-style8" >
+                &nbsp;</td>
+            <td>
+                <asp:HyperLink ID="ViewLink" runat="server" NavigateUrl="/Detail.aspx?id=id">1. Подивитися це оголошення</asp:HyperLink><br />
+                <asp:HyperLink ID="ListLink" runat="server">2. Подивитися список оголошень</asp:HyperLink><br />
+                <asp:HyperLink ID="AddLink" runat="server">3. Додати нове оголошення</asp:HyperLink>
+            </td>
+        </tr>
+    </table>
+
 </asp:Content>
 
