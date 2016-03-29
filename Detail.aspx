@@ -16,15 +16,23 @@
         .auto-style4 {
             width: 179px;
         }
+        .auto-style5 {
+            width: 241px;
+        }
+        .auto-style6 {
+            width: 183px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <div style="width: 50%; text-align: center; margin: 0 auto;"><strong><asp:Label ID="ErorLabel" runat="server" ForeColor="Red" Visible="False"></asp:Label></strong></div>
     <!--Detailed table-->
-   <table id="detailTable" align="center" border="1" class="auto-style1" style="width: 50%;" runat="server">
+   <table id="detailTable" align="center" border="1" class="auto-style1" style="width: 50%;" runat="server" visible="False">
         <tr>
             <td class="auto-style3" colspan="2" style="text-align: center;">
                 <strong>
                 <asp:Label ID="TitleLabel" runat="server" Text="Заголовок"></asp:Label>
+                    
                     </strong>
             </td>
         </tr>
@@ -128,11 +136,11 @@
     <!--EditFormTable-->
     <table ID="EditFormTable" visible="false" align="center" border="1" class="auto-style1" style="width: 50%;" runat="server">
         <tr>
-            <td colspan="2" class="auto-style2">
-                Подати оголошення</td>
+            <td colspan="2" class="auto-style2" style="text-align: center;">
+                <strong>Редагування оголошення</strong></td>
         </tr>
         <tr>
-            <td class="auto-style3">
+            <td class="auto-style6">
                 Заголовок
             </td>
             <td>
@@ -140,18 +148,15 @@
             </td>
         </tr>
         <tr>
-            <td class="auto-style3">
+            <td class="auto-style6">
                 Тип оголошення</td>
             <td align="left">
-                <asp:RadioButtonList ID="TypeRBList" runat="server">
-                    <asp:ListItem>Продаж</asp:ListItem>
-                    <asp:ListItem>Обмiн</asp:ListItem>
-                    <asp:ListItem>Вiдам даром</asp:ListItem>
+                <asp:RadioButtonList ID="TypeRBList" runat="server" DataTextField="type_name" DataValueField="type_id">
                 </asp:RadioButtonList>
             </td>
         </tr>
         <tr>
-            <td class="auto-style3">
+            <td class="auto-style6">
                 Рубрика
             </td>
             <td>
@@ -160,7 +165,7 @@
             </td>
         </tr>
         <tr>
-            <td class="auto-style3">
+            <td class="auto-style6">
                 Стан
             </td>
             <td>
@@ -171,7 +176,7 @@
             </td>
         </tr>
         <tr>
-            <td class="auto-style3">
+            <td class="auto-style6">
                 Опис
             </td>
             <td>
@@ -179,7 +184,7 @@
             </td>
         </tr>
         <tr>
-            <td class="auto-style4">
+            <td class="auto-style6">
                 Доставка та оплата </td>
             <td align="left" class="auto-style5">
                 <asp:CheckBoxList ID="DeliveryCBList" runat="server" DataTextField="delivery_type_name" DataValueField="delivery_type_id">
@@ -187,21 +192,22 @@
             </td>
         </tr>
         <tr>
-            <td colspan="2" class="auto-style2">
-                Контактні дані
+            <td colspan="2" class="auto-style2" style="text-align: center;">
+                <strong>Контактні дані
+            </strong>
             </td>
         </tr>
         <tr>
-            <td class="auto-style3">
+            <td class="auto-style6">
                 Місто
             </td>
             <td>
-                <asp:DropDownList ID="CityDropList" runat="server">
+                <asp:DropDownList ID="CityDropList" runat="server" DataTextField="city_name" DataValueField="city_id">
                 </asp:DropDownList>
             </td>
         </tr>
         <tr>
-            <td class="auto-style3">
+            <td class="auto-style6">
                 Ім'я
             </td>
             <td>
@@ -209,7 +215,7 @@
             </td>
         </tr>
         <tr>
-            <td class="auto-style3">
+            <td class="auto-style6">
                 E-mail
             </td>
             <td>
@@ -225,7 +231,7 @@
             </td>
         </tr>
         <tr>
-            <td class="auto-style3">
+            <td class="auto-style6">
                 Skype
             </td>
             <td>
@@ -233,7 +239,7 @@
             </td>
         </tr>
         <tr>
-            <td align="center" class="auto-style3"><asp:Button ID="clearButton" runat="server" Text="Очистити" /></td>
+            <td align="center" class="auto-style6"><asp:Button ID="clearButton" runat="server" Text="Очистити" /></td>
             <td align="center"><asp:Button ID="sendButton" runat="server" Text="Розмістити" /></td>
         </tr>
     </table>
