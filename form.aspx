@@ -162,9 +162,9 @@
             <td style="text-align: center;" class="auto-style8" >
                 &nbsp;</td>
             <td>
-                <asp:HyperLink ID="ViewLink" runat="server" NavigateUrl="/Detail.aspx?id=id">1. Подивитися це оголошення</asp:HyperLink><br />
-                <asp:HyperLink ID="ListLink" runat="server">2. Подивитися список оголошень</asp:HyperLink><br />
-                <asp:HyperLink ID="AddLink" runat="server">3. Додати нове оголошення</asp:HyperLink>
+                <asp:HyperLink ID="ViewLink" runat="server">1. Подивитися це оголошення</asp:HyperLink><br />
+                <asp:HyperLink ID="ListLink" runat="server" NavigateUrl="~/adlist.aspx" >2. Подивитися список оголошень</asp:HyperLink><br />
+                <asp:HyperLink ID="AddLink" runat="server" NavigateUrl="~/form.aspx">3. Додати нове оголошення</asp:HyperLink>
             </td>
         </tr>
     </table>

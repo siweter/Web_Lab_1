@@ -257,7 +257,7 @@
         </tr>
         <tr>
             <td align="center" class="auto-style6"><asp:Button ID="clearButton" runat="server" Text="Очистити" /></td>
-            <td align="center"><asp:Button ID="sendButton" runat="server" Text="Розмістити" OnClick="sendButton_Click" /></td>
+            <td align="center"><asp:Button ID="sendButton" runat="server" Text="Зберегти" OnClick="sendButton_Click" /></td>
         </tr>
     </table>
 

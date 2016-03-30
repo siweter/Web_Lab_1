@@ -24,6 +24,8 @@ public partial class adlist : System.Web.UI.Page
 
         string[] headers = { "Назва", "Стан", "Категорія", "Тип оголошення", "Місто", "Доставка", "Ім'я", "E-mail", "Телефон", "Skype" };
 
+        CountLabel.Text = "Оголошень на сайті: " + adQuery.Count();
+
         Table adList = new Table();
         adList.ID = "adList";
         adList.Attributes.Add("border", "1");

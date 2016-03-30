@@ -18,7 +18,7 @@ public partial class Default2 : System.Web.UI.Page
 
         ad adTable = new ad();
 
-        adTable.category_id = CategoryDropList.SelectedIndex;
+        adTable.category_id = int.Parse(CategoryDropList.SelectedValue);
         adTable.city_id = int.Parse(CityDropList.SelectedValue);
         adTable.type_id = int.Parse(TypeRBList.SelectedValue);
         adTable.title = TitleTextBox.Text;
@@ -48,6 +48,9 @@ public partial class Default2 : System.Web.UI.Page
 
         int id = adTable.ad_id;
 
-        
+        FormTable.Visible = false;
+        LinksTable.Visible = true;
+
+        ViewLink.NavigateUrl = "Detail.aspx?id=" + id;
     }
 }
