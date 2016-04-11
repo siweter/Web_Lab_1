@@ -1,0 +1,9 @@
+﻿body {
+}
+a:link, a:visited, a:active, a:hover {
+    text-decoration: none;
+    color: #000000;
+}
+a:hover {
+    font-weight: bold;
+}

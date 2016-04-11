@@ -66,5 +66,23 @@
             </td>
         </tr>
     </table>
+
+
+    <table style="width: 30%" align="center" border="1" runat="server" id="AuthInfoTable" visible="false">
+        <tr>
+            <td style="text-align: center">
+                <asp:Label ID="AuthInfoLabel" runat="server" Font-Bold="True" ForeColor="#10721D"></asp:Label>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-left: center; padding-left: 10px">
+                <asp:HyperLink ID="HyperLink4" runat="server" NavigateUrl="~/Login.aspx">1. Пройти авторизацію</asp:HyperLink><br />
+                <asp:HyperLink ID="HyperLink5" runat="server" NavigateUrl="~/adlist.aspx">2. Перейти на головну</asp:HyperLink><br />
+                <asp:HyperLink ID="HyperLink6" runat="server" NavigateUrl="~/form.aspx">3. Додати нове оголошення</asp:HyperLink>
+            </td>
+        </tr>
+    </table>
+
+
 </asp:Content>
 
