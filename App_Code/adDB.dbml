@@ -1,25 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ASPNETServices" Class="adDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=USER-NOTE;Initial Catalog=ASPNETServices;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="ASPNETServicesConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.ad" Member="ad">
-    <Type Name="ad">
-      <Column Name="ad_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="user_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="category_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="city_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="type_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="title" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="state" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="description" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
-      <Column Name="name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="mail" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="phone" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="skype" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Association Name="ad_delivery" Member="delivery" ThisKey="ad_id" OtherKey="ad_id" Type="delivery" />
-      <Association Name="category_ad" Member="category" ThisKey="category_id" OtherKey="category_id" Type="category" IsForeignKey="true" />
-      <Association Name="city_ad" Member="city" ThisKey="city_id" OtherKey="city_id" Type="city" IsForeignKey="true" />
-      <Association Name="type_ad" Member="type" ThisKey="type_id" OtherKey="type_id" Type="type" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.category" Member="category">
     <Type Name="category">
       <Column Name="category_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -38,8 +18,8 @@
     <Type Name="delivery">
       <Column Name="ad_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="delivery_type_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="ad_delivery" Member="ad" ThisKey="ad_id" OtherKey="ad_id" Type="ad" IsForeignKey="true" />
       <Association Name="delivery_type_delivery" Member="delivery_type" ThisKey="delivery_type_id" OtherKey="delivery_type_id" Type="delivery_type" IsForeignKey="true" />
+      <Association Name="ad_delivery" Member="ad" ThisKey="ad_id" OtherKey="ad_id" Type="ad" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.delivery_type" Member="delivery_type">
@@ -54,6 +34,38 @@
       <Column Name="type_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="type_name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Association Name="type_ad" Member="ad" ThisKey="type_id" OtherKey="type_id" Type="ad" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ad" Member="ad">
+    <Type Name="ad">
+      <Column Name="ad_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="category_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="city_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="type_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="title" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="state" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="mail" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="phone" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="skype" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="user_id" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Association Name="ad_delivery" Member="delivery" ThisKey="ad_id" OtherKey="ad_id" Type="delivery" />
+      <Association Name="category_ad" Member="category" ThisKey="category_id" OtherKey="category_id" Type="category" IsForeignKey="true" />
+      <Association Name="city_ad" Member="city" ThisKey="city_id" OtherKey="city_id" Type="city" IsForeignKey="true" />
+      <Association Name="type_ad" Member="type" ThisKey="type_id" OtherKey="type_id" Type="type" IsForeignKey="true" />
+      <Association Name="user_ad" Member="user" ThisKey="user_id" OtherKey="user_id" Type="user" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[user]" Member="user">
+    <Type Name="user">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="user_id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="mail" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="phone" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="skype" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Association Name="user_ad" Member="ad" ThisKey="user_id" OtherKey="user_id" Type="ad" />
     </Type>
   </Table>
 </Database>

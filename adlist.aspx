@@ -2,13 +2,31 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 
+    <style type="text/css">
+        .auto-style1 {
+            width: 100%;
+        }
+    </style>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <asp:PlaceHolder ID="PlaceHolder1" runat="server">
-        <div style="text-align: center; margin: 0 auto;">
-            <asp:Label ID="CountLabel" runat="server"></asp:Label>&nbsp;&nbsp; Ви можете:
-            <asp:HyperLink ID="AddLink" runat="server" NavigateUrl="~/form.aspx">Додати нове оголошення.</asp:HyperLink><br />
-        </div>
-    </asp:PlaceHolder>
-    </asp:Content>
+
+    <table class="auto-style1">
+        <tr>
+            <td style="text-align: center;"> 
+                <asp:Label ID="CountLabel" runat="server">Оголошень на сайті</asp:Label> 
+                <asp:Label ID="UserInfLabel" runat="server">Ви не авторизовані. Пройдіть&nbsp;</asp:Label>
+                <asp:HyperLink ID="LoginLink" runat="server" NavigateUrl="~/Login.aspx">авторизацію</asp:HyperLink>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">
+                Вам доступно:&nbsp;
+                <asp:HyperLink ID="AddLink" runat="server" NavigateUrl="~/form.aspx">Додавання</asp:HyperLink>
+                <asp:Label ID="PermissionsLabel" runat="server">&nbsp;нових оголошень.</asp:Label> 
+            </td>
+        </tr>
+    </table>
+    <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
+</asp:Content>
 

@@ -29,9 +29,6 @@ public partial class adDBDataContext : System.Data.Linq.DataContext
 	
   #region Определения метода расширяемости
   partial void OnCreated();
-  partial void Insertad(ad instance);
-  partial void Updatead(ad instance);
-  partial void Deletead(ad instance);
   partial void Insertcategory(category instance);
   partial void Updatecategory(category instance);
   partial void Deletecategory(category instance);
@@ -47,6 +44,12 @@ public partial class adDBDataContext : System.Data.Linq.DataContext
   partial void Inserttype(type instance);
   partial void Updatetype(type instance);
   partial void Deletetype(type instance);
+  partial void Insertad(ad instance);
+  partial void Updatead(ad instance);
+  partial void Deletead(ad instance);
+  partial void Insertuser(user instance);
+  partial void Updateuser(user instance);
+  partial void Deleteuser(user instance);
   #endregion
 	
 	public adDBDataContext() : 
@@ -77,14 +80,6 @@ public partial class adDBDataContext : System.Data.Linq.DataContext
 			base(connection, mappingSource)
 	{
 		OnCreated();
-	}
-	
-	public System.Data.Linq.Table<ad> ad
-	{
-		get
-		{
-			return this.GetTable<ad>();
-		}
 	}
 	
 	public System.Data.Linq.Table<category> category
@@ -126,482 +121,21 @@ public partial class adDBDataContext : System.Data.Linq.DataContext
 			return this.GetTable<type>();
 		}
 	}
-}
-
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ad")]
-public partial class ad : INotifyPropertyChanging, INotifyPropertyChanged
-{
 	
-	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-	
-	private int _ad_id;
-	
-	private int _user_id;
-	
-	private int _category_id;
-	
-	private int _city_id;
-	
-	private int _type_id;
-	
-	private string _title;
-	
-	private string _state;
-	
-	private string _description;
-	
-	private string _name;
-	
-	private string _mail;
-	
-	private string _phone;
-	
-	private string _skype;
-	
-	private EntitySet<delivery> _delivery;
-	
-	private EntityRef<category> _category;
-	
-	private EntityRef<city> _city;
-	
-	private EntityRef<type> _type;
-	
-    #region Определения метода расширяемости
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onad_idChanging(int value);
-    partial void Onad_idChanged();
-    partial void Onuser_idChanging(int value);
-    partial void Onuser_idChanged();
-    partial void Oncategory_idChanging(int value);
-    partial void Oncategory_idChanged();
-    partial void Oncity_idChanging(int value);
-    partial void Oncity_idChanged();
-    partial void Ontype_idChanging(int value);
-    partial void Ontype_idChanged();
-    partial void OntitleChanging(string value);
-    partial void OntitleChanged();
-    partial void OnstateChanging(string value);
-    partial void OnstateChanged();
-    partial void OndescriptionChanging(string value);
-    partial void OndescriptionChanged();
-    partial void OnnameChanging(string value);
-    partial void OnnameChanged();
-    partial void OnmailChanging(string value);
-    partial void OnmailChanged();
-    partial void OnphoneChanging(string value);
-    partial void OnphoneChanged();
-    partial void OnskypeChanging(string value);
-    partial void OnskypeChanged();
-    #endregion
-	
-	public ad()
-	{
-		this._delivery = new EntitySet<delivery>(new Action<delivery>(this.attach_delivery), new Action<delivery>(this.detach_delivery));
-		this._category = default(EntityRef<category>);
-		this._city = default(EntityRef<city>);
-		this._type = default(EntityRef<type>);
-		OnCreated();
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ad_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-	public int ad_id
+	public System.Data.Linq.Table<ad> ad
 	{
 		get
 		{
-			return this._ad_id;
-		}
-		set
-		{
-			if ((this._ad_id != value))
-			{
-				this.Onad_idChanging(value);
-				this.SendPropertyChanging();
-				this._ad_id = value;
-				this.SendPropertyChanged("ad_id");
-				this.Onad_idChanged();
-			}
+			return this.GetTable<ad>();
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_user_id", DbType="Int NOT NULL")]
-	public int user_id
+	public System.Data.Linq.Table<user> user
 	{
 		get
 		{
-			return this._user_id;
+			return this.GetTable<user>();
 		}
-		set
-		{
-			if ((this._user_id != value))
-			{
-				this.Onuser_idChanging(value);
-				this.SendPropertyChanging();
-				this._user_id = value;
-				this.SendPropertyChanged("user_id");
-				this.Onuser_idChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_category_id", DbType="Int NOT NULL")]
-	public int category_id
-	{
-		get
-		{
-			return this._category_id;
-		}
-		set
-		{
-			if ((this._category_id != value))
-			{
-				if (this._category.HasLoadedOrAssignedValue)
-				{
-					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-				}
-				this.Oncategory_idChanging(value);
-				this.SendPropertyChanging();
-				this._category_id = value;
-				this.SendPropertyChanged("category_id");
-				this.Oncategory_idChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_city_id", DbType="Int NOT NULL")]
-	public int city_id
-	{
-		get
-		{
-			return this._city_id;
-		}
-		set
-		{
-			if ((this._city_id != value))
-			{
-				if (this._city.HasLoadedOrAssignedValue)
-				{
-					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-				}
-				this.Oncity_idChanging(value);
-				this.SendPropertyChanging();
-				this._city_id = value;
-				this.SendPropertyChanged("city_id");
-				this.Oncity_idChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_type_id", DbType="Int NOT NULL")]
-	public int type_id
-	{
-		get
-		{
-			return this._type_id;
-		}
-		set
-		{
-			if ((this._type_id != value))
-			{
-				if (this._type.HasLoadedOrAssignedValue)
-				{
-					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-				}
-				this.Ontype_idChanging(value);
-				this.SendPropertyChanging();
-				this._type_id = value;
-				this.SendPropertyChanged("type_id");
-				this.Ontype_idChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_title", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-	public string title
-	{
-		get
-		{
-			return this._title;
-		}
-		set
-		{
-			if ((this._title != value))
-			{
-				this.OntitleChanging(value);
-				this.SendPropertyChanging();
-				this._title = value;
-				this.SendPropertyChanged("title");
-				this.OntitleChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_state", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-	public string state
-	{
-		get
-		{
-			return this._state;
-		}
-		set
-		{
-			if ((this._state != value))
-			{
-				this.OnstateChanging(value);
-				this.SendPropertyChanging();
-				this._state = value;
-				this.SendPropertyChanged("state");
-				this.OnstateChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_description", DbType="Text NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
-	public string description
-	{
-		get
-		{
-			return this._description;
-		}
-		set
-		{
-			if ((this._description != value))
-			{
-				this.OndescriptionChanging(value);
-				this.SendPropertyChanging();
-				this._description = value;
-				this.SendPropertyChanged("description");
-				this.OndescriptionChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-	public string name
-	{
-		get
-		{
-			return this._name;
-		}
-		set
-		{
-			if ((this._name != value))
-			{
-				this.OnnameChanging(value);
-				this.SendPropertyChanging();
-				this._name = value;
-				this.SendPropertyChanged("name");
-				this.OnnameChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_mail", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-	public string mail
-	{
-		get
-		{
-			return this._mail;
-		}
-		set
-		{
-			if ((this._mail != value))
-			{
-				this.OnmailChanging(value);
-				this.SendPropertyChanging();
-				this._mail = value;
-				this.SendPropertyChanged("mail");
-				this.OnmailChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phone", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-	public string phone
-	{
-		get
-		{
-			return this._phone;
-		}
-		set
-		{
-			if ((this._phone != value))
-			{
-				this.OnphoneChanging(value);
-				this.SendPropertyChanging();
-				this._phone = value;
-				this.SendPropertyChanged("phone");
-				this.OnphoneChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_skype", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-	public string skype
-	{
-		get
-		{
-			return this._skype;
-		}
-		set
-		{
-			if ((this._skype != value))
-			{
-				this.OnskypeChanging(value);
-				this.SendPropertyChanging();
-				this._skype = value;
-				this.SendPropertyChanged("skype");
-				this.OnskypeChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ad_delivery", Storage="_delivery", ThisKey="ad_id", OtherKey="ad_id")]
-	public EntitySet<delivery> delivery
-	{
-		get
-		{
-			return this._delivery;
-		}
-		set
-		{
-			this._delivery.Assign(value);
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="category_ad", Storage="_category", ThisKey="category_id", OtherKey="category_id", IsForeignKey=true)]
-	public category category
-	{
-		get
-		{
-			return this._category.Entity;
-		}
-		set
-		{
-			category previousValue = this._category.Entity;
-			if (((previousValue != value) 
-						|| (this._category.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._category.Entity = null;
-					previousValue.ad.Remove(this);
-				}
-				this._category.Entity = value;
-				if ((value != null))
-				{
-					value.ad.Add(this);
-					this._category_id = value.category_id;
-				}
-				else
-				{
-					this._category_id = default(int);
-				}
-				this.SendPropertyChanged("category");
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="city_ad", Storage="_city", ThisKey="city_id", OtherKey="city_id", IsForeignKey=true)]
-	public city city
-	{
-		get
-		{
-			return this._city.Entity;
-		}
-		set
-		{
-			city previousValue = this._city.Entity;
-			if (((previousValue != value) 
-						|| (this._city.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._city.Entity = null;
-					previousValue.ad.Remove(this);
-				}
-				this._city.Entity = value;
-				if ((value != null))
-				{
-					value.ad.Add(this);
-					this._city_id = value.city_id;
-				}
-				else
-				{
-					this._city_id = default(int);
-				}
-				this.SendPropertyChanged("city");
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="type_ad", Storage="_type", ThisKey="type_id", OtherKey="type_id", IsForeignKey=true)]
-	public type type
-	{
-		get
-		{
-			return this._type.Entity;
-		}
-		set
-		{
-			type previousValue = this._type.Entity;
-			if (((previousValue != value) 
-						|| (this._type.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._type.Entity = null;
-					previousValue.ad.Remove(this);
-				}
-				this._type.Entity = value;
-				if ((value != null))
-				{
-					value.ad.Add(this);
-					this._type_id = value.type_id;
-				}
-				else
-				{
-					this._type_id = default(int);
-				}
-				this.SendPropertyChanged("type");
-			}
-		}
-	}
-	
-	public event PropertyChangingEventHandler PropertyChanging;
-	
-	public event PropertyChangedEventHandler PropertyChanged;
-	
-	protected virtual void SendPropertyChanging()
-	{
-		if ((this.PropertyChanging != null))
-		{
-			this.PropertyChanging(this, emptyChangingEventArgs);
-		}
-	}
-	
-	protected virtual void SendPropertyChanged(String propertyName)
-	{
-		if ((this.PropertyChanged != null))
-		{
-			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-		}
-	}
-	
-	private void attach_delivery(delivery entity)
-	{
-		this.SendPropertyChanging();
-		entity.ad = this;
-	}
-	
-	private void detach_delivery(delivery entity)
-	{
-		this.SendPropertyChanging();
-		entity.ad = null;
 	}
 }
 
@@ -843,9 +377,9 @@ public partial class delivery : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private int _delivery_type_id;
 	
-	private EntityRef<ad> _ad;
-	
 	private EntityRef<delivery_type> _delivery_type;
+	
+	private EntityRef<ad> _ad;
 	
     #region Определения метода расширяемости
     partial void OnLoaded();
@@ -859,8 +393,8 @@ public partial class delivery : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	public delivery()
 	{
-		this._ad = default(EntityRef<ad>);
 		this._delivery_type = default(EntityRef<delivery_type>);
+		this._ad = default(EntityRef<ad>);
 		OnCreated();
 	}
 	
@@ -912,40 +446,6 @@ public partial class delivery : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ad_delivery", Storage="_ad", ThisKey="ad_id", OtherKey="ad_id", IsForeignKey=true)]
-	public ad ad
-	{
-		get
-		{
-			return this._ad.Entity;
-		}
-		set
-		{
-			ad previousValue = this._ad.Entity;
-			if (((previousValue != value) 
-						|| (this._ad.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._ad.Entity = null;
-					previousValue.delivery.Remove(this);
-				}
-				this._ad.Entity = value;
-				if ((value != null))
-				{
-					value.delivery.Add(this);
-					this._ad_id = value.ad_id;
-				}
-				else
-				{
-					this._ad_id = default(int);
-				}
-				this.SendPropertyChanged("ad");
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="delivery_type_delivery", Storage="_delivery_type", ThisKey="delivery_type_id", OtherKey="delivery_type_id", IsForeignKey=true)]
 	public delivery_type delivery_type
 	{
@@ -976,6 +476,40 @@ public partial class delivery : INotifyPropertyChanging, INotifyPropertyChanged
 					this._delivery_type_id = default(int);
 				}
 				this.SendPropertyChanged("delivery_type");
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ad_delivery", Storage="_ad", ThisKey="ad_id", OtherKey="ad_id", IsForeignKey=true)]
+	public ad ad
+	{
+		get
+		{
+			return this._ad.Entity;
+		}
+		set
+		{
+			ad previousValue = this._ad.Entity;
+			if (((previousValue != value) 
+						|| (this._ad.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._ad.Entity = null;
+					previousValue.delivery.Remove(this);
+				}
+				this._ad.Entity = value;
+				if ((value != null))
+				{
+					value.delivery.Add(this);
+					this._ad_id = value.ad_id;
+				}
+				else
+				{
+					this._ad_id = default(int);
+				}
+				this.SendPropertyChanged("ad");
 			}
 		}
 	}
@@ -1226,6 +760,734 @@ public partial class type : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		this.SendPropertyChanging();
 		entity.type = null;
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ad")]
+public partial class ad : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _ad_id;
+	
+	private int _category_id;
+	
+	private int _city_id;
+	
+	private int _type_id;
+	
+	private string _title;
+	
+	private string _state;
+	
+	private string _description;
+	
+	private string _name;
+	
+	private string _mail;
+	
+	private string _phone;
+	
+	private string _skype;
+	
+	private System.Nullable<System.Guid> _user_id;
+	
+	private EntitySet<delivery> _delivery;
+	
+	private EntityRef<category> _category;
+	
+	private EntityRef<city> _city;
+	
+	private EntityRef<type> _type;
+	
+	private EntityRef<user> _user;
+	
+    #region Определения метода расширяемости
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onad_idChanging(int value);
+    partial void Onad_idChanged();
+    partial void Oncategory_idChanging(int value);
+    partial void Oncategory_idChanged();
+    partial void Oncity_idChanging(int value);
+    partial void Oncity_idChanged();
+    partial void Ontype_idChanging(int value);
+    partial void Ontype_idChanged();
+    partial void OntitleChanging(string value);
+    partial void OntitleChanged();
+    partial void OnstateChanging(string value);
+    partial void OnstateChanged();
+    partial void OndescriptionChanging(string value);
+    partial void OndescriptionChanged();
+    partial void OnnameChanging(string value);
+    partial void OnnameChanged();
+    partial void OnmailChanging(string value);
+    partial void OnmailChanged();
+    partial void OnphoneChanging(string value);
+    partial void OnphoneChanged();
+    partial void OnskypeChanging(string value);
+    partial void OnskypeChanged();
+    partial void Onuser_idChanging(System.Nullable<System.Guid> value);
+    partial void Onuser_idChanged();
+    #endregion
+	
+	public ad()
+	{
+		this._delivery = new EntitySet<delivery>(new Action<delivery>(this.attach_delivery), new Action<delivery>(this.detach_delivery));
+		this._category = default(EntityRef<category>);
+		this._city = default(EntityRef<city>);
+		this._type = default(EntityRef<type>);
+		this._user = default(EntityRef<user>);
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ad_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int ad_id
+	{
+		get
+		{
+			return this._ad_id;
+		}
+		set
+		{
+			if ((this._ad_id != value))
+			{
+				this.Onad_idChanging(value);
+				this.SendPropertyChanging();
+				this._ad_id = value;
+				this.SendPropertyChanged("ad_id");
+				this.Onad_idChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_category_id", DbType="Int NOT NULL")]
+	public int category_id
+	{
+		get
+		{
+			return this._category_id;
+		}
+		set
+		{
+			if ((this._category_id != value))
+			{
+				if (this._category.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.Oncategory_idChanging(value);
+				this.SendPropertyChanging();
+				this._category_id = value;
+				this.SendPropertyChanged("category_id");
+				this.Oncategory_idChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_city_id", DbType="Int NOT NULL")]
+	public int city_id
+	{
+		get
+		{
+			return this._city_id;
+		}
+		set
+		{
+			if ((this._city_id != value))
+			{
+				if (this._city.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.Oncity_idChanging(value);
+				this.SendPropertyChanging();
+				this._city_id = value;
+				this.SendPropertyChanged("city_id");
+				this.Oncity_idChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_type_id", DbType="Int NOT NULL")]
+	public int type_id
+	{
+		get
+		{
+			return this._type_id;
+		}
+		set
+		{
+			if ((this._type_id != value))
+			{
+				if (this._type.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.Ontype_idChanging(value);
+				this.SendPropertyChanging();
+				this._type_id = value;
+				this.SendPropertyChanged("type_id");
+				this.Ontype_idChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_title", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+	public string title
+	{
+		get
+		{
+			return this._title;
+		}
+		set
+		{
+			if ((this._title != value))
+			{
+				this.OntitleChanging(value);
+				this.SendPropertyChanging();
+				this._title = value;
+				this.SendPropertyChanged("title");
+				this.OntitleChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_state", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+	public string state
+	{
+		get
+		{
+			return this._state;
+		}
+		set
+		{
+			if ((this._state != value))
+			{
+				this.OnstateChanging(value);
+				this.SendPropertyChanging();
+				this._state = value;
+				this.SendPropertyChanged("state");
+				this.OnstateChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_description", DbType="Text NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+	public string description
+	{
+		get
+		{
+			return this._description;
+		}
+		set
+		{
+			if ((this._description != value))
+			{
+				this.OndescriptionChanging(value);
+				this.SendPropertyChanging();
+				this._description = value;
+				this.SendPropertyChanged("description");
+				this.OndescriptionChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+	public string name
+	{
+		get
+		{
+			return this._name;
+		}
+		set
+		{
+			if ((this._name != value))
+			{
+				this.OnnameChanging(value);
+				this.SendPropertyChanging();
+				this._name = value;
+				this.SendPropertyChanged("name");
+				this.OnnameChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_mail", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+	public string mail
+	{
+		get
+		{
+			return this._mail;
+		}
+		set
+		{
+			if ((this._mail != value))
+			{
+				this.OnmailChanging(value);
+				this.SendPropertyChanging();
+				this._mail = value;
+				this.SendPropertyChanged("mail");
+				this.OnmailChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phone", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+	public string phone
+	{
+		get
+		{
+			return this._phone;
+		}
+		set
+		{
+			if ((this._phone != value))
+			{
+				this.OnphoneChanging(value);
+				this.SendPropertyChanging();
+				this._phone = value;
+				this.SendPropertyChanged("phone");
+				this.OnphoneChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_skype", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+	public string skype
+	{
+		get
+		{
+			return this._skype;
+		}
+		set
+		{
+			if ((this._skype != value))
+			{
+				this.OnskypeChanging(value);
+				this.SendPropertyChanging();
+				this._skype = value;
+				this.SendPropertyChanged("skype");
+				this.OnskypeChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_user_id", DbType="UniqueIdentifier")]
+	public System.Nullable<System.Guid> user_id
+	{
+		get
+		{
+			return this._user_id;
+		}
+		set
+		{
+			if ((this._user_id != value))
+			{
+				if (this._user.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.Onuser_idChanging(value);
+				this.SendPropertyChanging();
+				this._user_id = value;
+				this.SendPropertyChanged("user_id");
+				this.Onuser_idChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ad_delivery", Storage="_delivery", ThisKey="ad_id", OtherKey="ad_id")]
+	public EntitySet<delivery> delivery
+	{
+		get
+		{
+			return this._delivery;
+		}
+		set
+		{
+			this._delivery.Assign(value);
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="category_ad", Storage="_category", ThisKey="category_id", OtherKey="category_id", IsForeignKey=true)]
+	public category category
+	{
+		get
+		{
+			return this._category.Entity;
+		}
+		set
+		{
+			category previousValue = this._category.Entity;
+			if (((previousValue != value) 
+						|| (this._category.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._category.Entity = null;
+					previousValue.ad.Remove(this);
+				}
+				this._category.Entity = value;
+				if ((value != null))
+				{
+					value.ad.Add(this);
+					this._category_id = value.category_id;
+				}
+				else
+				{
+					this._category_id = default(int);
+				}
+				this.SendPropertyChanged("category");
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="city_ad", Storage="_city", ThisKey="city_id", OtherKey="city_id", IsForeignKey=true)]
+	public city city
+	{
+		get
+		{
+			return this._city.Entity;
+		}
+		set
+		{
+			city previousValue = this._city.Entity;
+			if (((previousValue != value) 
+						|| (this._city.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._city.Entity = null;
+					previousValue.ad.Remove(this);
+				}
+				this._city.Entity = value;
+				if ((value != null))
+				{
+					value.ad.Add(this);
+					this._city_id = value.city_id;
+				}
+				else
+				{
+					this._city_id = default(int);
+				}
+				this.SendPropertyChanged("city");
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="type_ad", Storage="_type", ThisKey="type_id", OtherKey="type_id", IsForeignKey=true)]
+	public type type
+	{
+		get
+		{
+			return this._type.Entity;
+		}
+		set
+		{
+			type previousValue = this._type.Entity;
+			if (((previousValue != value) 
+						|| (this._type.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._type.Entity = null;
+					previousValue.ad.Remove(this);
+				}
+				this._type.Entity = value;
+				if ((value != null))
+				{
+					value.ad.Add(this);
+					this._type_id = value.type_id;
+				}
+				else
+				{
+					this._type_id = default(int);
+				}
+				this.SendPropertyChanged("type");
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="user_ad", Storage="_user", ThisKey="user_id", OtherKey="user_id", IsForeignKey=true)]
+	public user user
+	{
+		get
+		{
+			return this._user.Entity;
+		}
+		set
+		{
+			user previousValue = this._user.Entity;
+			if (((previousValue != value) 
+						|| (this._user.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._user.Entity = null;
+					previousValue.ad.Remove(this);
+				}
+				this._user.Entity = value;
+				if ((value != null))
+				{
+					value.ad.Add(this);
+					this._user_id = value.user_id;
+				}
+				else
+				{
+					this._user_id = default(Nullable<System.Guid>);
+				}
+				this.SendPropertyChanged("user");
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+	
+	private void attach_delivery(delivery entity)
+	{
+		this.SendPropertyChanging();
+		entity.ad = this;
+	}
+	
+	private void detach_delivery(delivery entity)
+	{
+		this.SendPropertyChanging();
+		entity.ad = null;
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[user]")]
+public partial class user : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _id;
+	
+	private System.Guid _user_id;
+	
+	private string _name;
+	
+	private string _mail;
+	
+	private string _phone;
+	
+	private string _skype;
+	
+	private EntitySet<ad> _ad;
+	
+    #region Определения метода расширяемости
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void Onuser_idChanging(System.Guid value);
+    partial void Onuser_idChanged();
+    partial void OnnameChanging(string value);
+    partial void OnnameChanged();
+    partial void OnmailChanging(string value);
+    partial void OnmailChanged();
+    partial void OnphoneChanging(string value);
+    partial void OnphoneChanged();
+    partial void OnskypeChanging(string value);
+    partial void OnskypeChanged();
+    #endregion
+	
+	public user()
+	{
+		this._ad = new EntitySet<ad>(new Action<ad>(this.attach_ad), new Action<ad>(this.detach_ad));
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.Always, DbType="Int NOT NULL IDENTITY", IsDbGenerated=true)]
+	public int id
+	{
+		get
+		{
+			return this._id;
+		}
+		set
+		{
+			if ((this._id != value))
+			{
+				this.OnidChanging(value);
+				this.SendPropertyChanging();
+				this._id = value;
+				this.SendPropertyChanged("id");
+				this.OnidChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_user_id", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+	public System.Guid user_id
+	{
+		get
+		{
+			return this._user_id;
+		}
+		set
+		{
+			if ((this._user_id != value))
+			{
+				this.Onuser_idChanging(value);
+				this.SendPropertyChanging();
+				this._user_id = value;
+				this.SendPropertyChanged("user_id");
+				this.Onuser_idChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+	public string name
+	{
+		get
+		{
+			return this._name;
+		}
+		set
+		{
+			if ((this._name != value))
+			{
+				this.OnnameChanging(value);
+				this.SendPropertyChanging();
+				this._name = value;
+				this.SendPropertyChanged("name");
+				this.OnnameChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_mail", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+	public string mail
+	{
+		get
+		{
+			return this._mail;
+		}
+		set
+		{
+			if ((this._mail != value))
+			{
+				this.OnmailChanging(value);
+				this.SendPropertyChanging();
+				this._mail = value;
+				this.SendPropertyChanged("mail");
+				this.OnmailChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phone", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+	public string phone
+	{
+		get
+		{
+			return this._phone;
+		}
+		set
+		{
+			if ((this._phone != value))
+			{
+				this.OnphoneChanging(value);
+				this.SendPropertyChanging();
+				this._phone = value;
+				this.SendPropertyChanged("phone");
+				this.OnphoneChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_skype", DbType="NChar(10) NOT NULL", CanBeNull=false)]
+	public string skype
+	{
+		get
+		{
+			return this._skype;
+		}
+		set
+		{
+			if ((this._skype != value))
+			{
+				this.OnskypeChanging(value);
+				this.SendPropertyChanging();
+				this._skype = value;
+				this.SendPropertyChanged("skype");
+				this.OnskypeChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="user_ad", Storage="_ad", ThisKey="user_id", OtherKey="user_id")]
+	public EntitySet<ad> ad
+	{
+		get
+		{
+			return this._ad;
+		}
+		set
+		{
+			this._ad.Assign(value);
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+	
+	private void attach_ad(ad entity)
+	{
+		this.SendPropertyChanging();
+		entity.user = this;
+	}
+	
+	private void detach_ad(ad entity)
+	{
+		this.SendPropertyChanging();
+		entity.user = null;
 	}
 }
 #pragma warning restore 1591
