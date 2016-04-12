@@ -4,15 +4,13 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
-    <asp:ContentPlaceHolder id="head" runat="server">
-    </asp:ContentPlaceHolder>
-    <style type="text/css">
-	body {
-		background: url('images/bg.jpg') top center no-repeat fixed #000009;
-	}
-</style>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="~/style.css">
+        <asp:ContentPlaceHolder id="head" runat="server">
+        </asp:ContentPlaceHolder>
+        <style type="text/css">
+	    
+    </style>
 </head>
 <body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" >
 

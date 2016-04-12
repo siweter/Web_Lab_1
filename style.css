@@ -1,9 +1,40 @@
 ﻿body {
+    background: url('images/bg.jpg') top center no-repeat fixed #000009;
 }
+
+
 a:link, a:visited, a:active, a:hover {
+    font-size: 14px;
+    font-weight: bold;
+    color: #6E6E6F;
     text-decoration: none;
     color: #000000;
 }
 a:hover {
-    font-weight: bold;
+    color: #00970c;
+}
+
+
+#adList {
+    border-spacing: 1px 1px;
+}
+#adList th {
+  font-size: 13px;
+  font-weight: bold;
+  background: #b9c9fe;
+  border-top: 4px solid #aabcfe;
+  color: #039;
+  padding: 8px;
+}
+#adList td {
+  background: #F2F2F2;
+  color: #6E6E6F;
+  border-top: 1px solid transparent;
+  padding: 8px;
+}
+#adList tr:hover td {
+  background: #ccddff; 
+}
+#adList a {
+    color: #6E6E6F;
 }

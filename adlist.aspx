@@ -15,15 +15,15 @@
         <tr>
             <td style="text-align: center;"> 
                 <asp:Label ID="CountLabel" runat="server">Оголошень на сайті</asp:Label> 
-                <asp:Label ID="UserInfLabel" runat="server">Ви не авторизовані. Пройдіть&nbsp;</asp:Label>
+                <asp:Label ID="UserInfLabel" runat="server">Ви не авторизовані. Пройдіть</asp:Label>
                 <asp:HyperLink ID="LoginLink" runat="server" NavigateUrl="~/Login.aspx">авторизацію</asp:HyperLink>
             </td>
         </tr>
         <tr>
             <td style="text-align: center;">
-                Вам доступно:&nbsp;
+                Вам доступно:
                 <asp:HyperLink ID="AddLink" runat="server" NavigateUrl="~/form.aspx">Додавання</asp:HyperLink>
-                <asp:Label ID="PermissionsLabel" runat="server">&nbsp;нових оголошень.</asp:Label> 
+                <asp:Label ID="PermissionsLabel" runat="server">нових оголошень.</asp:Label> 
             </td>
         </tr>
     </table>

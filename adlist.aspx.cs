@@ -45,7 +45,7 @@ public partial class adlist : System.Web.UI.Page
                             select new { id = delivery.ad_id, typeName = deliveryType.delivery_type_name };
 
         // Названия заголовков таблицы
-        string[] headers = { "Назва", "Стан", "Категорія", "Тип оголошення", "Місто", "Доставка", "Ім'я", "E-mail", "Телефон", "Skype" };
+        string[] headers = { "Назва", "Стан", "Категорія", "Тип", "Місто", "Доставка", "Ім'я", "E-mail", "Телефон", "Skype" };
 
         // Если есть объявления
         if (adQuery.Count() > 0)
@@ -57,47 +57,32 @@ public partial class adlist : System.Web.UI.Page
         // Создание таблицы объявлений
         // Присваивание ID и втрибутов
         Table adList = new Table();
-        adList.ID = "adList";
-        adList.Attributes.Add("border", "1");
+        adList.Attributes.Add("id", "adList");
+        adList.Attributes.Add("border", "0");
         adList.Attributes.Add("align", "center");
+        adList.Attributes.Add("cellspacing", "0");
+
 
         // Создание шапки таблицы
         TableRow header = new TableRow();
-        for (int i = 0; i <= 5; i++)
+        for (int i = 0; i < headers.Length; i++)
         {
             // Заполнение ее заголовками
-            TableCell cell = new TableCell();
-            cell.Attributes.Add("rowspan", "2");
+            TableHeaderCell cell = new TableHeaderCell();
             cell.Text = headers[i];
             header.Controls.Add(cell);
         }
-        TableCell contacts = new TableCell();
-        contacts.Text = "Контакти";
-        contacts.HorizontalAlign = HorizontalAlign.Center;
-        contacts.Attributes.Add("colspan", "4");
-        header.Controls.Add(contacts);
-        
+                
         // Если пользователь авторизован
         if (online == true)
         {
             // Добавить заголовок "Видалення" 
-            TableCell deleteCell = new TableCell();
-            deleteCell.Attributes.Add("rowspan", "2");
+            TableHeaderCell deleteCell = new TableHeaderCell();
             deleteCell.Text = "Видалення";
             header.Controls.Add(deleteCell);
             
         }
         adList.Controls.Add(header);
-
-
-        TableRow header2 = new TableRow();
-        for (int i = 6; i < headers.Length; i++)
-        {
-            TableCell cell = new TableCell();
-            cell.Text = headers[i];
-            header2.Controls.Add(cell);
-        }
-        adList.Controls.Add(header2);
 
         foreach (var item in adQuery)
         {
@@ -112,11 +97,11 @@ public partial class adlist : System.Web.UI.Page
 
                     // Если заголовок длиннее 20 символов
                     string title = it.GetValue(item).ToString();
-                    if (title.Length > 20)
+                    if (title.Length > 15)
                     {
                         // Обрезать строку до 17 символов
                         // Добавить троеточие
-                        title.Remove(16, title.Length - 16);
+                        title.Remove(11, title.Length - 11);
                         title += "...";
                     }
 
