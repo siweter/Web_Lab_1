@@ -61,10 +61,7 @@
     <Type Name="user">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="user_id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="mail" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="phone" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="skype" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
       <Association Name="user_ad" Member="ad" ThisKey="user_id" OtherKey="user_id" Type="ad" />
     </Type>
   </Table>

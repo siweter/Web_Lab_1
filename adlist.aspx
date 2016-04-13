@@ -7,6 +7,19 @@
             width: 100%;
         }
     </style>
+    <script type="text/javascript">
+        function openDelWindow(id)
+        {
+            var url = "Delete.aspx?id=" + id;
+            var params = "menubar=no,location=no,resizable=yes,scrollbars=no,status=yes, width=400, height=500";
+            var delWindow = window.open(url, "_blank", params, true);
+            delWindow.focus();
+        }
+        function reloadPage()
+        {
+            location.reload();
+        }
+    </script>
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
@@ -24,9 +37,12 @@
                 Вам доступно:
                 <asp:HyperLink ID="AddLink" runat="server" NavigateUrl="~/form.aspx">Додавання</asp:HyperLink>
                 <asp:Label ID="PermissionsLabel" runat="server">нових оголошень.</asp:Label> 
+                <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
             </td>
         </tr>
     </table>
-    <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
+    <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder><br />
+    <asp:PlaceHolder ID="ButtonsHolder" runat="server"></asp:PlaceHolder>
+    <br />
 </asp:Content>
 

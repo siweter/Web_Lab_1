@@ -33,30 +33,9 @@
         </tr>
         <tr>
             <td>
-                І&#39;мя</td>
-            <td>
-                <asp:TextBox ID="NameEdit" runat="server" class="edit"></asp:TextBox>
-            </td>
-        </tr>
-        <tr>
-            <td>
                 E-mail</td>
             <td>
                 <asp:TextBox ID="MailEdit" runat="server" class="edit"></asp:TextBox>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Телефон</td>
-            <td>
-                <asp:TextBox ID="PhoneEdit" runat="server" class="edit"></asp:TextBox>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Skype</td>
-            <td>
-                <asp:TextBox ID="SkypeEdit" runat="server" class="edit"></asp:TextBox>
             </td>
         </tr>
         <tr>

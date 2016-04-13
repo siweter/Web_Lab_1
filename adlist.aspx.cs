@@ -14,6 +14,7 @@ public partial class adlist : System.Web.UI.Page
         bool online = false;
         // Получить текущего пользователя
         MembershipUser user = Membership.GetUser();
+
         // Если пользователь получен... 
         if (user != null)
         {
@@ -34,10 +35,92 @@ public partial class adlist : System.Web.UI.Page
 
         // Получение списка объявлений
         var adQuery = from ad in db.ad
+                       join category in db.category on ad.category_id equals category.category_id
+                       join type in db.type on ad.type_id equals type.type_id
+                       join town in db.city on ad.city_id equals town.city_id
+                       select new { title = ad.title, state = ad.state, category = category.category_name, type = type.type_name, town = town.city_name, id = ad.ad_id, name = ad.name, mail = ad.mail, phone = ad.phone, skype = ad.skype };
+
+        // Получение вариантов доставки для объявлений
+        var deliveryQuery = from delivery in db.delivery
+                            join deliveryType in db.delivery_type on delivery.delivery_type_id equals deliveryType.delivery_type_id
+                            select new { id = delivery.ad_id, typeName = deliveryType.delivery_type_name };
+
+        // Если есть объявления
+        if (adQuery.Count() > 0)
+        {
+            // Вывести их кол-во
+            CountLabel.Text = "Оголошень на сайті: " + adQuery.Count();
+        }
+
+        // Кол-во полученных записей
+        // Кол-во страниц
+        int elements = adQuery.Count();
+        int pages = 0;
+
+        // Вычисление кол-ва страниц
+        if (elements > 10)
+        {
+            if (elements % 10 == 0)
+            {
+                pages = elements / 10;
+            }
+            else
+            {
+                pages = elements / 10 + 1;
+            }
+
+            // Кнопки-номера страниц
+            Table pageButtonsTable = new Table();
+            pageButtonsTable.Attributes.Add("align", "center");
+            pageButtonsTable.Attributes.Add("id", "pageBT");
+            TableRow pageRow = new TableRow();
+
+            for (int i = 1; i <= pages; i++)
+            {
+                TableCell pageCell = new TableCell();
+                LinkButton pageButton = new LinkButton();
+                pageButton.Text = i.ToString();
+                pageButton.PostBackUrl = "~/adlist.aspx?page=" + i;
+                pageCell.Controls.Add(pageButton);
+                pageRow.Controls.Add(pageCell);
+            }
+            pageButtonsTable.Controls.Add(pageRow);
+            ButtonsHolder.Controls.Add(pageButtonsTable);
+        }
+
+
+        if (Request.QueryString.Count > 0 && Request.QueryString.AllKeys.Contains("page"))
+        {
+            // Номер страницы 
+            int page = 0;
+
+            // Eсли удалось получить номер страницы
+            if (Int32.TryParse(Request.QueryString["page"], out page))
+            {
+                buildTable(page, online);
+            }
+            else
+            {
+                buildTable(1, online);
+            }
+        }
+        else
+        {
+            buildTable(1, online);
+        }
+    }
+
+
+    public void buildTable(int page, bool online)
+    {
+        adDBDataContext db = new adDBDataContext();
+
+        // Получение списка объявлений
+        var adQuery = (from ad in db.ad
                       join category in db.category on ad.category_id equals category.category_id
                       join type in db.type on ad.type_id equals type.type_id
                       join town in db.city on ad.city_id equals town.city_id
-                      select new { title = ad.title, state = ad.state, category = category.category_name, type = type.type_name, town = town.city_name, id = ad.ad_id, name = ad.name, mail = ad.mail, phone = ad.phone, skype = ad.skype };
+                      select new { title = ad.title, state = ad.state, category = category.category_name, type = type.type_name, town = town.city_name, id = ad.ad_id, name = ad.name, mail = ad.mail, phone = ad.phone, skype = ad.skype }).Skip((page - 1)*10).Take(10);
 
         // Получение вариантов доставки для объявлений
         var deliveryQuery = from delivery in db.delivery
@@ -47,13 +130,7 @@ public partial class adlist : System.Web.UI.Page
         // Названия заголовков таблицы
         string[] headers = { "Назва", "Стан", "Категорія", "Тип", "Місто", "Доставка", "Ім'я", "E-mail", "Телефон", "Skype" };
 
-        // Если есть объявления
-        if (adQuery.Count() > 0)
-        {
-            // Вывести их кол-во
-            CountLabel.Text = "Оголошень на сайті: " + adQuery.Count();
-        }
-        
+
         // Создание таблицы объявлений
         // Присваивание ID и втрибутов
         Table adList = new Table();
@@ -61,7 +138,6 @@ public partial class adlist : System.Web.UI.Page
         adList.Attributes.Add("border", "0");
         adList.Attributes.Add("align", "center");
         adList.Attributes.Add("cellspacing", "0");
-
 
         // Создание шапки таблицы
         TableRow header = new TableRow();
@@ -72,7 +148,7 @@ public partial class adlist : System.Web.UI.Page
             cell.Text = headers[i];
             header.Controls.Add(cell);
         }
-                
+
         // Если пользователь авторизован
         if (online == true)
         {
@@ -80,9 +156,11 @@ public partial class adlist : System.Web.UI.Page
             TableHeaderCell deleteCell = new TableHeaderCell();
             deleteCell.Text = "Видалення";
             header.Controls.Add(deleteCell);
-            
+
         }
         adList.Controls.Add(header);
+
+
 
         foreach (var item in adQuery)
         {
@@ -136,7 +214,7 @@ public partial class adlist : System.Web.UI.Page
                     row.Controls.Add(cell);
                 }
 
-                
+
             }
 
             // Если пользователь онлайн
@@ -146,22 +224,20 @@ public partial class adlist : System.Web.UI.Page
                 TableCell linkCell = new TableCell();
                 Button delButton = new Button();
                 delButton.Text = "Видалити";
+                string func = "openDelWindow(" + item.id + ")";
+                delButton.Attributes.Add("onclick", func);
                 linkCell.Controls.Add(delButton);
                 row.Controls.Add(linkCell);
             }
-            
+
 
             adList.Controls.Add(row);
         }
 
         //PlaceHolder PlaceHolder1 = new PlaceHolder();
         PlaceHolder1.Controls.Add(adList);
-        
-
-
-
-
-
-
     }
 }
+
+
+

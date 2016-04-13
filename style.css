@@ -6,7 +6,7 @@
 a:link, a:visited, a:active, a:hover {
     font-size: 14px;
     font-weight: bold;
-    color: #6E6E6F;
+
     text-decoration: none;
     color: #000000;
 }
@@ -27,14 +27,27 @@ a:hover {
   padding: 8px;
 }
 #adList td {
-  background: #F2F2F2;
-  color: #6E6E6F;
-  border-top: 1px solid transparent;
-  padding: 8px;
+    background: #F2F2F2;
+    color: #6E6E6F;
+    border-top: 1px solid transparent;
+    padding: 8px;
 }
 #adList tr:hover td {
-  background: #ccddff; 
+    background: #ccddff; 
 }
 #adList a {
     color: #6E6E6F;
+}
+
+
+#pageBT a {
+    background: #F2F2F2;
+    color: #6E6E6F;
+    display: block;
+    padding: 3px 7px 3px 7px;
+    border: 1px solid #6E6E6F;
+}
+
+#pageBT a:hover {
+    background: #ccddff;
 }

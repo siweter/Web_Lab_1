@@ -1291,13 +1291,7 @@ public partial class user : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private System.Guid _user_id;
 	
-	private string _name;
-	
 	private string _mail;
-	
-	private string _phone;
-	
-	private string _skype;
 	
 	private EntitySet<ad> _ad;
 	
@@ -1309,14 +1303,8 @@ public partial class user : INotifyPropertyChanging, INotifyPropertyChanged
     partial void OnidChanged();
     partial void Onuser_idChanging(System.Guid value);
     partial void Onuser_idChanged();
-    partial void OnnameChanging(string value);
-    partial void OnnameChanged();
     partial void OnmailChanging(string value);
     partial void OnmailChanged();
-    partial void OnphoneChanging(string value);
-    partial void OnphoneChanged();
-    partial void OnskypeChanging(string value);
-    partial void OnskypeChanged();
     #endregion
 	
 	public user()
@@ -1365,26 +1353,6 @@ public partial class user : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-	public string name
-	{
-		get
-		{
-			return this._name;
-		}
-		set
-		{
-			if ((this._name != value))
-			{
-				this.OnnameChanging(value);
-				this.SendPropertyChanging();
-				this._name = value;
-				this.SendPropertyChanged("name");
-				this.OnnameChanged();
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_mail", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
 	public string mail
 	{
@@ -1401,46 +1369,6 @@ public partial class user : INotifyPropertyChanging, INotifyPropertyChanged
 				this._mail = value;
 				this.SendPropertyChanged("mail");
 				this.OnmailChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phone", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-	public string phone
-	{
-		get
-		{
-			return this._phone;
-		}
-		set
-		{
-			if ((this._phone != value))
-			{
-				this.OnphoneChanging(value);
-				this.SendPropertyChanging();
-				this._phone = value;
-				this.SendPropertyChanged("phone");
-				this.OnphoneChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_skype", DbType="NChar(10) NOT NULL", CanBeNull=false)]
-	public string skype
-	{
-		get
-		{
-			return this._skype;
-		}
-		set
-		{
-			if ((this._skype != value))
-			{
-				this.OnskypeChanging(value);
-				this.SendPropertyChanging();
-				this._skype = value;
-				this.SendPropertyChanged("skype");
-				this.OnskypeChanged();
 			}
 		}
 	}

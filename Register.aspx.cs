@@ -19,21 +19,30 @@ public partial class Register : System.Web.UI.Page
     {
         MembershipCreateStatus createStatus;
 
-        MembershipUser user = Membership.CreateUser(LoginEdit.Text, PassEdit.Text, MailEdit.Text, null, null, true, out createStatus);
+        MembershipUser newUser = Membership.CreateUser(LoginEdit.Text, PassEdit.Text, MailEdit.Text, null, null, true, out createStatus);
 
         if (createStatus == MembershipCreateStatus.Success)
         {
             adDBDataContext db = new adDBDataContext();
 
             user userTable = new user();
-            userTable.user_id = Guid.Parse(user.ProviderUserKey.ToString());
-            userTable.name = NameEdit.Text;
+            userTable.user_id = Guid.Parse(newUser.ProviderUserKey.ToString());
             userTable.mail = MailEdit.Text;
-            userTable.phone = PhoneEdit.Text;
-            userTable.skype = SkypeEdit.Text;
 
             db.user.InsertOnSubmit(userTable);
             db.SubmitChanges();
+
+            var adQuery = from ad in db.ad
+                          select ad;
+
+            foreach (ad item in adQuery)
+            {
+                if (item.mail == MailEdit.Text)
+                {
+                    item.user_id = Guid.Parse(newUser.ProviderUserKey.ToString());
+                    db.SubmitChanges();
+                }
+            }
 
             AuthInfoTable.Visible = true;
             AuthInfoLabel.Text = "Реєстрація пройшла успішно. Ви можете:";
@@ -43,7 +52,6 @@ public partial class Register : System.Web.UI.Page
             ErrorLable.Visible = true;
             ErrorLable.Text = createStatus.ToString();
         }
-
         
 
     }
