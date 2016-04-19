@@ -9,17 +9,25 @@
     <script type="text/javascript">
         window.onload = function () {
             var table = document.getElementById("detailTable");
-            alert(table.width + "  " + table.height);
-            window.resizeTo(table);
+            window.resizeTo(table.offsetWidth+50, table.offsetHeight+130);
+            window.opener.location.reload();
+        }
+
+        function noClick() {
             window.opener.location.reload();
             window.close();
         }
     </script>
+    <style type="text/css">
+        .auto-style1 {
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
     <div>
-        <table id="detailTable" border="1" class="auto-style1" style="width: 50%;" runat="server" visible="False">
+        <table id="detailTable" border="1" class="auto-style1" style="width: 600px;" runat="server" visible="False">
         <tr>
             <td class="auto-style3" colspan="2" style="text-align: center;">
                 <strong><asp:Label ID="ErrorLabel" runat="server" ForeColor="Red" Visible="False"></asp:Label></strong>
@@ -115,22 +123,28 @@
             </td>
             <td>
                 <asp:Label ID="SkypeLabel" runat="server"></asp:Label>
+                
             </td>
         </tr>
         <tr>
             <td align="center" colspan="2">
                 
-                <table id="DeleteDialog" class="auto-style1" runat="server">
+                
+                <table class="auto-style1">
                     <tr>
                         <td colspan="2" style="color: #960B0B; text-align: center;"><strong>Ви дійсно бажаєте видалити це оголошення?</strong></td>
                     </tr>
                     <tr>
-                        <td align="right" style="padding-right: 10px; width: 50%;">
-                            <input style="width: 60px" id="YesButton" type="button" value="Так" onclick="buttonClick()" /></td>
-                        <td align="left" style="padding-left: 10px;">
-                            <input style="width: 60px" id="NoButton" type="button" value="Ні" /></td>
+                        <td align="center">
+                            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Так" Width="50px" />
+                        </td>
+                        <td align="center">
+                            <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Ні" Width="50px" />
+                        </td>
                     </tr>
                 </table>
+                
+                
             </td>
         </tr>
     </table>

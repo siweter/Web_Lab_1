@@ -27,13 +27,13 @@ a:hover {
   padding: 8px;
 }
 #adList td {
-    background: #F2F2F2;
+    //background: #F2F2F2;
     color: #6E6E6F;
     border-top: 1px solid transparent;
     padding: 8px;
 }
 #adList tr:hover td {
-    background: #ccddff; 
+    //background: #ccddff; 
 }
 #adList a {
     color: #6E6E6F;
@@ -50,4 +50,53 @@ a:hover {
 
 #pageBT a:hover {
     background: #ccddff;
+}
+
+
+.userRow {
+    background: #08c300;
+}
+
+.userRow:hover td{
+    background: #0ce802;
+}
+
+.Row {
+    background: #F2F2F2;
+}
+
+.Row:hover {
+    background: #ccddff; 
+}
+
+
+
+.notAuthTable {
+    border: 1px solid #9D9C49;
+    color: #47451E;
+    background: #FDFDCB;
+    padding: 11px 15px 15px 15px;
+}
+
+.notAuthTable a:hover {
+    color: #47451E;
+}
+
+.notAuthTable a {
+    color: #9D9C49;
+}
+
+.AuthTable {
+    border: 1px solid #4F8746;
+    color: #174A0F;
+    background: #D4FFCD;
+    padding: 11px 15px 15px 15px;
+}
+
+.AuthTable a:hover {
+    color: #3A932C;
+}
+
+.AuthTable a {
+    color: #203E1B;
 }

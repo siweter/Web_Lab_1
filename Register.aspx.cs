@@ -37,7 +37,7 @@ public partial class Register : System.Web.UI.Page
 
             foreach (ad item in adQuery)
             {
-                if (item.mail == MailEdit.Text)
+                if (item.mail == MailEdit.Text && item.user_id == null)
                 {
                     item.user_id = Guid.Parse(newUser.ProviderUserKey.ToString());
                     db.SubmitChanges();

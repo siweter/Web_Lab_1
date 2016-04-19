@@ -87,4 +87,48 @@ public partial class Delete : System.Web.UI.Page
         ErrorLabel.Visible = true;
         ErrorLabel.Text = message;
     }
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+
+
+        // Id объявления 
+        int id = 0;
+        PrintError("okay");
+        // Eсли удалось получить значение Id
+        if (Int32.TryParse(Request.QueryString["id"], out id))
+        {
+
+            adDBDataContext db = new adDBDataContext();
+
+            var adQuery = from ad in db.ad
+                          where ad.ad_id == id
+                          //select new { title = ad.title, state = ad.state, description = ad.description, categoryId = ad.category_id, typeId = ad.type_id, townId = ad.city_id, id = ad.ad_id, name = ad.name, mail = ad.mail, phone = ad.phone, skype = ad.skype };
+                          select ad;
+
+            // Запрос к таблице с вариантами доставки
+            var deliveryQuery = from delivery in db.delivery
+                                where delivery.ad_id == id
+                                select delivery;
+
+            foreach (var variant in deliveryQuery)
+            {
+                db.delivery.DeleteOnSubmit(variant);
+            }
+            db.SubmitChanges();
+
+            foreach (var ad in adQuery)
+            {
+                db.ad.DeleteOnSubmit(ad);
+            }
+            db.SubmitChanges();
+
+            ClientScript.RegisterStartupScript(typeof(Page), "closePage", "noClick();", true);
+        }
+    }
+
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+        ClientScript.RegisterStartupScript(typeof(Page), "closePage", "noClick();", true);
+    }
 }

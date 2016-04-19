@@ -10,6 +10,10 @@
         </asp:ContentPlaceHolder>
         <style type="text/css">
 	    
+            .auto-style1 {
+                width: 100%;
+            }
+	    
     </style>
 </head>
 <body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" >
@@ -49,7 +53,7 @@
 				<tr>
 					<td width="130"><img src="images/sign_up.jpg"/></td>
 					<td width="172"><img src="images/learn.jpg"/></td>
-					<td><img src="images/line.gif"/></td>
+					<td> <img src="images/line.gif" /></td>
 				</tr>
 				<tr>
 					<td height="6" colspan="3"><img src="images/line_2.gif"/></td>
