@@ -35,14 +35,16 @@
         </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <table id="FormTable" align="center" border="1" class="auto-style1" runat="server">
+    <table id="FormTable" align="center" border="1" class="FormTable" runat="server">
         <tr>
             <td colspan="2" class="auto-style2">
-                Подати оголошення</td>
+                <asp:Label ID="AddLabel" runat="server"></asp:Label>
+                <asp:HiddenField ID="LangField" runat="server" Visible="False" />
+            </td>
         </tr>
         <tr>
             <td class="auto-style3">
-                Заголовок
+                <asp:Label ID="TitleLabel" runat="server"></asp:Label>
             </td>
             <td>
                 <asp:TextBox ID="TitleTextBox" runat="server" Width="100%"></asp:TextBox>
@@ -50,29 +52,38 @@
         </tr>
         <tr>
             <td class="auto-style3">
-                Тип оголошення</td>
+                <asp:Label ID="TypeLabel" runat="server"></asp:Label>
+            </td>
             <td align="left">
                 <asp:RadioButtonList ID="TypeRBList" runat="server" DataSourceID="TypeDataSource" DataTextField="type_name" DataValueField="type_id">
                     <asp:ListItem>Продаж</asp:ListItem>
                     <asp:ListItem>Обмiн</asp:ListItem>
                     <asp:ListItem>Вiдам даром</asp:ListItem>
                 </asp:RadioButtonList>
-                <asp:SqlDataSource ID="TypeDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:ASPNETServicesConnectionString %>" SelectCommand="SELECT * FROM [type]"></asp:SqlDataSource>
+                <asp:SqlDataSource ID="TypeDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:ASPNETServicesConnectionString %>" SelectCommand="SELECT * FROM [type] WHERE ([locale] = @locale)">
+                    <SelectParameters>
+                        <asp:ControlParameter ControlID="LangField" Name="locale" PropertyName="Value" Type="String" />
+                    </SelectParameters>
+                </asp:SqlDataSource>
             </td>
         </tr>
         <tr>
             <td class="auto-style3">
-                Рубрика
+                &nbsp;<asp:Label ID="RybrLabel" runat="server"></asp:Label>
             </td>
             <td>
                 <asp:DropDownList ID="CategoryDropList" runat="server" DataSourceID="CategoryDataSource" DataTextField="category_name" DataValueField="category_id">
                 </asp:DropDownList>
-                <asp:SqlDataSource ID="CategoryDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:ASPNETServicesConnectionString %>" SelectCommand="SELECT * FROM [category]"></asp:SqlDataSource>
+                <asp:SqlDataSource ID="CategoryDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:ASPNETServicesConnectionString %>" SelectCommand="SELECT * FROM [category] WHERE ([locale] = @locale)">
+                    <SelectParameters>
+                        <asp:ControlParameter ControlID="LangField" DefaultValue="ua" Name="locale" PropertyName="Value" Type="String" />
+                    </SelectParameters>
+                </asp:SqlDataSource>
             </td>
         </tr>
         <tr>
             <td class="auto-style3">
-                Стан
+                &nbsp;<asp:Label ID="StateLabel" runat="server"></asp:Label>
             </td>
             <td>
                 <asp:DropDownList ID="StateDropList" runat="server">
@@ -83,7 +94,7 @@
         </tr>
         <tr>
             <td class="auto-style3">
-                Опис
+                &nbsp;<asp:Label ID="DescrLabel" runat="server"></asp:Label>
             </td>
             <td>
                 <asp:TextBox ID="DescrTextBox" runat="server" TextMode="MultiLine" Width="100%"></asp:TextBox>
@@ -91,31 +102,40 @@
         </tr>
         <tr>
             <td class="auto-style4">
-                Доставка та оплата </td>
+                &nbsp;<asp:Label ID="DeliveryLabel" runat="server"></asp:Label>
+            </td>
             <td align="left" class="auto-style5">
                 <asp:CheckBoxList ID="DeliveryCBList" runat="server" DataSourceID="DeliveryDataSource" DataTextField="delivery_type_name" DataValueField="delivery_type_id">
                 </asp:CheckBoxList>
-                <asp:SqlDataSource ID="DeliveryDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:ASPNETServicesConnectionString %>" SelectCommand="SELECT * FROM [delivery_type]"></asp:SqlDataSource>
+                <asp:SqlDataSource ID="DeliveryDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:ASPNETServicesConnectionString %>" SelectCommand="SELECT * FROM [delivery_type] WHERE ([locale] = @locale)">
+                    <SelectParameters>
+                        <asp:ControlParameter ControlID="LangField" DefaultValue="ua" Name="locale" PropertyName="Value" Type="String" />
+                    </SelectParameters>
+                </asp:SqlDataSource>
             </td>
         </tr>
         <tr>
             <td colspan="2" class="auto-style2">
-                Контактні дані
+                <asp:Label ID="ContactsLabel" runat="server"></asp:Label>
             </td>
         </tr>
         <tr>
             <td class="auto-style3">
-                Місто
+                <asp:Label ID="CityLabel" runat="server"></asp:Label>
             </td>
             <td>
                 <asp:DropDownList ID="CityDropList" runat="server" DataSourceID="CityDataSource" DataTextField="city_name" DataValueField="city_id">
                 </asp:DropDownList>
-                <asp:SqlDataSource ID="CityDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:ASPNETServicesConnectionString %>" SelectCommand="SELECT [city_id], [city_name] FROM [city]"></asp:SqlDataSource>
+                <asp:SqlDataSource ID="CityDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:ASPNETServicesConnectionString %>" SelectCommand="SELECT [city_id], [city_name] FROM [city] WHERE ([locale] = @locale)">
+                    <SelectParameters>
+                        <asp:ControlParameter ControlID="LangField" Name="locale" PropertyName="Value" Type="String" />
+                    </SelectParameters>
+                </asp:SqlDataSource>
             </td>
         </tr>
         <tr>
             <td class="auto-style3">
-                Ім'я
+                <asp:Label ID="NameLabel" runat="server"></asp:Label>
             </td>
             <td>
                 <asp:TextBox ID="NameTextBox" runat="server" Width="100%"></asp:TextBox>
@@ -131,7 +151,7 @@
         </tr>
         <tr>
             <td class="auto-style6">
-                Телефон
+                <asp:Label ID="PhoneLabel" runat="server"></asp:Label>
             </td>
             <td class="auto-style7">
                 <asp:TextBox ID="PhoneTextBox" runat="server" Width="100%"></asp:TextBox>
@@ -146,25 +166,29 @@
             </td>
         </tr>
         <tr>
-            <td align="center" class="auto-style3"><asp:Button ID="clearButton" runat="server" Text="Очистити" /></td>
-            <td align="center"><asp:Button ID="sendButton" runat="server" Text="Розмістити" OnClick="sendButton_Click" /></td>
+            <td align="center" class="auto-style3">&nbsp;</td>
+            <td align="center"><asp:Button ID="sendButton" runat="server" OnClick="sendButton_Click" /></td>
         </tr>
     </table>
 
-    <table id="LinksTable" align="center" class="auto-style1" runat="server" visible="False">
+    <table id="LinksTable" align="center" class="FormTable" runat="server" visible="False">
         <tr>
-            <td style="color: #10721d; text-align: center;" colspan="2" class="auto-style9"><strong>Вітаємо! Ваше оголошення успішно розміщено!</strong></td>
+            <td style="color: #10721d; text-align: center;" colspan="2" class="auto-style9"><strong>
+                <asp:Label ID="SuccessLabel" runat="server" Text="Label"></asp:Label>
+                </strong></td>
         </tr>
         <tr>
-            <td style="text-align: center;" colspan="2" ><strong>Ви можете: </strong></td>
+            <td style="text-align: center;" colspan="2" ><strong>
+                <asp:Label ID="UCanLabel" runat="server" Text="Label"></asp:Label>
+                </strong></td>
         </tr>
         <tr>
             <td style="text-align: center;" class="auto-style8" >
                 &nbsp;</td>
             <td>
-                <asp:HyperLink ID="ViewLink" runat="server">1. Подивитися це оголошення</asp:HyperLink><br />
-                <asp:HyperLink ID="ListLink" runat="server" NavigateUrl="~/adlist.aspx" >2. Подивитися список оголошень</asp:HyperLink><br />
-                <asp:HyperLink ID="AddLink" runat="server" NavigateUrl="~/form.aspx">3. Додати нове оголошення</asp:HyperLink>
+                <asp:HyperLink ID="ViewLink" runat="server">[ViewLink]</asp:HyperLink><br />
+                <asp:HyperLink ID="ListLink" runat="server" NavigateUrl="~/adlist.aspx" >[ListLink]</asp:HyperLink><br />
+                <asp:HyperLink ID="AddLink" runat="server" NavigateUrl="~/form.aspx">[AddLink]</asp:HyperLink>
             </td>
         </tr>
     </table>
